@@ -1,9 +1,6 @@
 import json
-from pathlib import Path
-
 from django.http import HttpResponse
 from django.shortcuts import render
-
 from config.settings import BASE_DIR
 
 FILE_FOR_SAVE_DATA = BASE_DIR.joinpath('data', 'data.json')
