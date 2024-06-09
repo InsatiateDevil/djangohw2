@@ -1,0 +1,94 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "category_name": "Смартфоны",
+        "description": "Классные современные смартфоны"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "category_name": "Телевизоры",
+        "description": "И посмотреть, и поиграть"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "category_name": "Холодильники",
+        "description": "Предназначены для долговременного хранения продуктов"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "category_name": "Наушники",
+        "description": "Призваны увеличить комфорт ваш и окружающих"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "category_name": "Игровые приставки",
+        "description": "Идут в комплекте с телевизорами)"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "product_name": "TCL 65C735",
+        "description": "кайфовый телек",
+        "preview_image": "products/image/Untitled.png",
+        "category": 2,
+        "price": 52000,
+        "created_at": "2024-06-07",
+        "updated_at": "2024-06-09T09:15:34.769Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "product_name": "Huawei",
+        "description": "\"Huawei P20\"",
+        "preview_image": "",
+        "category": 1,
+        "price": 35438,
+        "created_at": "2024-06-09",
+        "updated_at": "2024-06-09T09:14:00.249Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "product_name": "Vivo",
+        "description": "\"vivo Y93 (Mediatek)\"",
+        "preview_image": "",
+        "category": 1,
+        "price": 4687,
+        "created_at": "2024-06-09",
+        "updated_at": "2024-06-09T09:14:29.955Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "product_name": "Tecno",
+        "description": "Tecno Spark Power 2",
+        "preview_image": "",
+        "category": 1,
+        "price": 48971,
+        "created_at": "2024-06-09",
+        "updated_at": "2024-06-09T09:14:57.934Z"
+    }
+}
+]
