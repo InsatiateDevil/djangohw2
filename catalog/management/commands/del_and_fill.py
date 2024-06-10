@@ -29,7 +29,7 @@ class Command(BaseCommand):
         for category in Command.json_read(file_path):
             if category['model'] == 'catalog.category':
                 category_for_create.append(
-                    Category(pk = category['pk'],
+                    Category(pk=category['pk'],
                              category_name=category['fields']['category_name'],
                              description=category['fields']['description'])
                 )
@@ -41,14 +41,13 @@ class Command(BaseCommand):
         for product in Command.json_read(file_path):
             if product['model'] == 'catalog.product':
                 product_for_create.append(
-                    Product(product_name=product['fields']['product_name'],
+                    Product(pk=product['pk'],
+                            product_name=product['fields']['product_name'],
                             description=product['fields']['description'],
                             preview_image=product['fields']['preview_image'],
                             category=Category.objects.get(
                                 pk=product['fields']['category']),
-                            price=product['fields']['price'],
-                            created_at=product['fields']['created_at'],
-                            updated_at=product['fields']['updated_at'])
+                            price=product['fields']['price'])
                 )
 
         # Создаем объекты в базе с помощью метода bulk_create()

@@ -1,10 +1,4 @@
 from django.db import models
-from django.utils import timezone
-
-
-class AutoDateTimeField(models.DateTimeField):
-    def pre_save(self, model_instance, add):
-        return timezone.now()
 
 
 class Category(models.Model):
@@ -41,10 +35,10 @@ class Product(models.Model):
                                  blank=True, null=True)
     price = models.IntegerField(verbose_name='Цена',
                                 help_text='Введите цену на продукт')
-    created_at = models.DateField(verbose_name='Дата создания карточки',
-                                  default=timezone.now, editable=False)
-    updated_at = AutoDateTimeField(
-        verbose_name='Дата последнего изменения карточки', default=timezone.now,
+    created_at = models.DateTimeField(verbose_name='Дата создания карточки',
+                                      auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(
+        verbose_name='Дата последнего изменения карточки', auto_now=True,
         editable=False)
 
     class Meta:
@@ -54,3 +48,17 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.product_name} - {self.price}"
+
+
+class Contact(models.Model):
+    country = models.CharField(maxlenght=100, )
+    inn =
+    address =
+
+
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self):
+        return f"{self.country} - {self.inn} - {self.address}"
