@@ -51,10 +51,12 @@ class Product(models.Model):
 
 
 class Contact(models.Model):
-    country = models.CharField(maxlenght=100, )
-    inn =
-    address =
-
+    country = models.CharField(max_length=100, verbose_name='Страна',
+                               blank=True, null=True)
+    inn = models.CharField(max_length=100, verbose_name='ИНН', blank=True,
+                           null=True)
+    address = models.CharField(max_length=500, verbose_name='Адрес', blank=True,
+                               null=True)
 
     class Meta:
         verbose_name = 'Контакт'
