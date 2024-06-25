@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-4 box-shadow">
+    <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{blog.title}}</h4>
+    </div>
+    <div class="card-body">
+        <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+            <li>{{blog.content}}</li>
+        </ul>
+        <div class="card-footer">Просмотров статьи: {{blog.view_counter}}</div>
+    </div>
+</div>
+{% endblock %}

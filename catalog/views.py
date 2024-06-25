@@ -1,56 +1,81 @@
-import json
-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-import requests
-
-from catalog.forms import ProductForm
-from catalog.models import Product, Contact
-from config.settings import BASE_DIR
-
-FILE_FOR_SAVE_DATA = BASE_DIR.joinpath('data', 'data.json')
+from django.urls import reverse_lazy, reverse
+from django.utils.text import slugify
+from django.views.generic import DetailView, UpdateView, TemplateView, \
+    CreateView, ListView, DeleteView
+from catalog.models import Product, Contact, Blog
 
 
-# Create your views here.
-def home(request):
-    products = Product.objects.all()
-    objects_per_page = 4
-    paginator = Paginator(products, objects_per_page)
-    page_number = request.GET.get('p')
-    try:
-        page = paginator.page(page_number)
-    except EmptyPage:
-        page = paginator.page(paginator.num_pages)
-    except PageNotAnInteger:
-        page = paginator.page(1)
-    context = {'objects': page.object_list, 'paginator': paginator,
-               'page': page, 'title': 'Домашняя страница магазина', }
-    return render(request, 'home.html', context=context)
+class ContactsListView(ListView):
+    model = Contact
+    template_name = 'contacts.html'
 
 
-def contacts(request):
-    if request.POST:
-        with open(FILE_FOR_SAVE_DATA, 'a+', encoding='utf-8') as data_file:
-            json.dump(dict(request.POST), data_file,
-                      ensure_ascii=False, indent=4)
-    context = {'contacts': Contact.objects.all(), 'title': 'Контакты'}
-    return render(request, 'contacts.html', context=context)
+class ProductListView(ListView):
+    model = Product
+    paginate_by = 4
 
 
-def product_details(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    content = {'product': product, 'title': product.product_name}
-    return render(request, 'product_details.html', context=content)
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ('product_name', 'description',
+              'preview_image', 'category', 'price',)
+    success_url = reverse_lazy('catalog:home')
 
 
-def add_product(request):
-    if request.POST:
-        form = ProductForm(request.POST, request.FILES)
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class BlogCreateView(CreateView):
+    model = Blog
+    fields = ('title', 'content', 'preview_image', 'is_published',)
+    success_url = reverse_lazy('catalog:blog_list')
+
+    def form_valid(self, form):
         if form.is_valid():
-            form.save()
-            return redirect('catalog:product_details')
-    else:
-        form = ProductForm()
-    content = {'title': 'Добавление продукта', 'form': form}
-    return render(request, 'add_product.html', context=content)
+            blog = form.save()
+            blog.slug = slugify(blog.title)
+            blog.save()
+
+        return super().form_valid(form)
+
+
+class BlogListView(ListView):
+    model = Blog
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
+
+class BlogDetailView(DetailView):
+    model = Blog
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.view_counter += 1
+        self.object.save()
+        return self.object
+
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    fields = ('title', 'content', 'preview_image', 'is_published',)
+
+    def get_success_url(self):
+        return reverse('catalog:blog_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        if form.is_valid():
+            blog = form.save()
+            blog.slug = slugify(blog.title)
+            blog.save()
+
+        return super().form_valid(form)
+
+
+class BlogDeleteView(DeleteView):
+    model = Blog
+    success_url = reverse_lazy('catalog:blog_list')
+

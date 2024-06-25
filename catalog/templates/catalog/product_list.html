@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load to_100_symbols %}
+{% load media_tag %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Skystore</h1>
+    <p class="lead">Skystore - это отличный вариант размещения ваших продуктов
+        для продажи</p>
+</div>
+
+<div class="container">
+
+    <div class="row text-center">
+        {% for product in object_list %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top"
+                     src="{{ product.preview_image | media_tag }}"
+                     width="300" height="300">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        {{product.product_name}}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>{{product.description | to_100_symbols}}</li>
+                    </ul>
+                    <button type="button"
+                            class="btn btn-mb btn-block btn-outline-primary">
+                        {{product.price}} руб.
+                    </button>
+                    <a class="btn btn-mb btn-outline-primary"
+                       href="{% url 'catalog:product_details' product.pk %}">Подробности</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.previous_page_number > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'catalog:product_list' %}?page=1">
+                        <span aria-hidden="true">1</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% if page_obj.previous_page_number > 2 %}
+                <li class="page-item"><a class="page-link" >...</a></li>
+                {% endif %}
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="{% url 'catalog:product_list' %}?page={{ page_obj.previous_page_number}}">{{ page_obj.previous_page_number}}</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link">{{ page_obj.number}}</a></li>
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="{% url 'catalog:product_list' %}?page={{ page_obj.next_page_number}}">{{ page_obj.next_page_number}}</a></li>
+                {% if page_obj.paginator.num_pages > page_obj.next_page_number|add:"1" %}
+                <li class="page-item"><a class="page-link" >...</a></li>
+                {% endif %}
+                {% endif %}
+                {% if page_obj.paginator.num_pages > page_obj.next_page_number %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'catalog:product_list' %}?page={{ page_obj.paginator.num_pages}}">
+                        <span aria-hidden="true">{{ page_obj.paginator.num_pages}}</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

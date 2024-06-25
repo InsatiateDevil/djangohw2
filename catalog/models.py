@@ -64,3 +64,25 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.country} - {self.inn} - {self.address}"
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=150, verbose_name='заголовок')
+    slug = models.CharField(max_length=200, verbose_name='slug')
+    content = models.TextField(verbose_name='содержание')
+    preview_image = models.ImageField(null=True, blank=True,
+                                      verbose_name='изображение для предпросмотра')
+    created_at = models.DateTimeField(verbose_name='Дата создания статьи',
+                                      auto_now_add=True, editable=False)
+    is_published = models.BooleanField(default=True,
+                                       verbose_name='опубликовано',
+                                       help_text='Опубликовано')
+    view_counter = models.PositiveIntegerField(default=0, editable=False,
+                                               verbose_name='Количество просмотров')
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блоги'
