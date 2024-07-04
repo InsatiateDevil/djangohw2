@@ -48,7 +48,7 @@
       "product_name": "Fleet",
       "description": "Редактор кода на любом языке",
       "preview_image": "",
-      "category": null,
+      "category": 1,
       "price": 3000,
       "created_at": "2024-07-04T14:36:30.529Z",
       "updated_at": "2024-07-04T14:36:30.529Z"
@@ -178,19 +178,6 @@
       "country": "USA",
       "inn": "91-1144442",
       "address": "Redmond,WA,98052-6399"
-    }
-  },
-  {
-    "model": "catalog.blog",
-    "pk": 1,
-    "fields": {
-      "title": "что-то тамhfgdh",
-      "slug": "hfgdh",
-      "content": "о чем-то тамfgdhfgh",
-      "preview_image": "",
-      "created_at": "2024-06-25T16:03:52.877Z",
-      "is_published": true,
-      "view_counter": 105
     }
   },
   {
