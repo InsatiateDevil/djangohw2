@@ -11,6 +11,12 @@
         <button type="button" class="btn btn-lg btn-block btn-outline-primary">
             {{product.price}} руб.
         </button>
+        <a class="btn btn-lg btn-block btn-warning" href="{% url 'catalog:product_update' object.pk %}">
+            Изменить
+        </a>
+        <a class="btn btn-lg btn-block btn-danger" href="{% url 'catalog:product_delete' object.pk %}">
+            Удалить
+        </a>
     </div>
 </div>
 {% endblock %}

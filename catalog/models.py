@@ -28,7 +28,7 @@ class Product(models.Model):
                                       help_text='Загрузите изображения',
                                       blank=True, null=True)
     category = models.ForeignKey(Category,
-                                 related_name='products',
+                                 related_name='category',
                                  on_delete=models.SET_NULL,
                                  verbose_name='Категория',
                                  help_text='Введите категорию товара',
@@ -86,3 +86,20 @@ class Blog(models.Model):
     class Meta:
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='versions', verbose_name='продукт')
+    version_number = models.CharField(max_length=100,
+                                      verbose_name='номер версии')
+    version_name = models.CharField(max_length=100,
+                                    verbose_name='название версии')
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.version_name} - {self.version_number}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'

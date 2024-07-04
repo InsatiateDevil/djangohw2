@@ -1,94 +1,366 @@
 [
-{
+  {
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-        "category_name": "Смартфоны",
-        "description": "Классные современные смартфоны"
+      "category_name": "Приложения для разработки",
+      "description": "Приложения, призванные повысить скорость разработки новых программных решений"
     }
-},
-{
+  },
+  {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-        "category_name": "Телевизоры",
-        "description": "И посмотреть, и поиграть"
+      "category_name": "Программы для дизайна",
+      "description": "Приложения, призванные ускорить работу дизайнеров, художников и фронтендеров."
     }
-},
-{
-    "model": "catalog.category",
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "product_name": "PyCharm",
+      "description": "Удобная и красивая среда для разработки, в основном на языке Python",
+      "preview_image": "",
+      "category": 1,
+      "price": 1500,
+      "created_at": "2024-07-04T14:34:10.840Z",
+      "updated_at": "2024-07-04T14:35:57.580Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "product_name": "PhpStorm",
+      "description": "Приложение для разработки на Php",
+      "preview_image": "",
+      "category": 1,
+      "price": 2000,
+      "created_at": "2024-07-04T14:35:44.263Z",
+      "updated_at": "2024-07-04T14:35:44.263Z"
+    }
+  },
+  {
+    "model": "catalog.product",
     "pk": 3,
     "fields": {
-        "category_name": "Холодильники",
-        "description": "Предназначены для долговременного хранения продуктов"
+      "product_name": "Fleet",
+      "description": "Редактор кода на любом языке",
+      "preview_image": "",
+      "category": null,
+      "price": 3000,
+      "created_at": "2024-07-04T14:36:30.529Z",
+      "updated_at": "2024-07-04T14:36:30.529Z"
     }
-},
-{
-    "model": "catalog.category",
+  },
+  {
+    "model": "catalog.product",
     "pk": 4,
     "fields": {
-        "category_name": "Наушники",
-        "description": "Призваны увеличить комфорт ваш и окружающих"
+      "product_name": "DataGrip",
+      "description": "Приложение для работы с данными из различных баз данных( SQL, NoSQL)",
+      "preview_image": "",
+      "category": 1,
+      "price": 1000,
+      "created_at": "2024-07-04T14:37:14.704Z",
+      "updated_at": "2024-07-04T14:37:14.704Z"
     }
-},
-{
-    "model": "catalog.category",
+  },
+  {
+    "model": "catalog.product",
     "pk": 5,
     "fields": {
-        "category_name": "Игровые приставки",
-        "description": "Идут в комплекте с телевизорами)"
+      "product_name": "Aqua",
+      "description": "Среда разработки для тестировщиков",
+      "preview_image": "",
+      "category": 1,
+      "price": 2000,
+      "created_at": "2024-07-04T14:37:50.036Z",
+      "updated_at": "2024-07-04T14:37:50.036Z"
     }
-},
-{
+  },
+  {
     "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "product_name": "Photoshop",
+      "description": "Создавайте потрясающие картины, красивую графику и невероятные художественные работы.",
+      "preview_image": "",
+      "category": 2,
+      "price": 5000,
+      "created_at": "2024-07-04T14:38:36.640Z",
+      "updated_at": "2024-07-04T14:38:36.640Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "product_name": "Illustrator",
+      "description": "Придумывайте привлекательные графические элементы, иконки и многое другое, чтобы использовать в любых материалах и в любом масштабе.",
+      "preview_image": "",
+      "category": 2,
+      "price": 3000,
+      "created_at": "2024-07-04T14:39:14.903Z",
+      "updated_at": "2024-07-04T14:39:14.903Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "product_name": "Premiere Pro",
+      "description": "Монтируйте любые видеоматериалы – от коротких клипов для соцсетей до художественных фильмов – с помощью нашего популярного видеоредактора.",
+      "preview_image": "",
+      "category": 2,
+      "price": 5000,
+      "created_at": "2024-07-04T14:39:34.640Z",
+      "updated_at": "2024-07-04T14:39:34.640Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "product_name": "Figma",
+      "description": "Облачный инструмент для разработки пользовательского интерфейса в режиме реального времени",
+      "preview_image": "",
+      "category": 2,
+      "price": 1500,
+      "created_at": "2024-07-04T14:40:24.775Z",
+      "updated_at": "2024-07-04T14:40:24.775Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "product_name": "InVision Studio",
+      "description": "Благодаря множеству хорошо продуманных инструментов InVision дает возможность быстро разрабатывать функциональные прототипы и делиться ими с другими. Программа предлагает множество полезных функций, в том числе удобный инструмент для векторного рисования, возможность копирования компонентов с их последующим изменением, а также создание анимации и других интерактивных визуальных эффектов.",
+      "preview_image": "",
+      "category": 2,
+      "price": 10000,
+      "created_at": "2024-07-04T14:42:16.703Z",
+      "updated_at": "2024-07-04T14:42:16.703Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "product_name": "Adobe XD",
+      "description": "Adobe XD предлагает векторную систему для разработки прототипов, которая включает инструменты для создания взаимодействий, переходов и других типов динамических функций. Поскольку в его основе лежит вектор, масштабировать и менять размеры элементов не составляет труда.",
+      "preview_image": "",
+      "category": 2,
+      "price": 5000,
+      "created_at": "2024-07-04T14:42:45.063Z",
+      "updated_at": "2024-07-04T16:33:37.077Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+      "product_name": "Webflow",
+      "description": "Этот инструмент выполняет сразу две задачи. Вы разрабатываете прототип высокой детализации и параллельно создаете действующий веб-сайт, в котором есть все: HTML, CSS и связанный с ним JavaScript. Вы получите не просто макет — у вас будет настоящий сайт.",
+      "preview_image": "",
+      "category": 2,
+      "price": 4000,
+      "created_at": "2024-07-04T14:43:14.051Z",
+      "updated_at": "2024-07-04T14:43:14.051Z"
+    }
+  },
+  {
+    "model": "catalog.contact",
     "pk": 1,
     "fields": {
-        "product_name": "TCL 65C735",
-        "description": "кайфовый телек",
-        "preview_image": "products/image/Untitled.png",
-        "category": 2,
-        "price": 52000,
-        "created_at": "2024-06-07",
-        "updated_at": "2024-06-09T09:15:34.769Z"
+      "country": "USA",
+      "inn": "91-1144442",
+      "address": "Redmond,WA,98052-6399"
     }
-},
-{
-    "model": "catalog.product",
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "что-то тамhfgdh",
+      "slug": "hfgdh",
+      "content": "о чем-то тамfgdhfgh",
+      "preview_image": "",
+      "created_at": "2024-06-25T16:03:52.877Z",
+      "is_published": true,
+      "view_counter": 105
+    }
+  },
+  {
+    "model": "catalog.version",
     "pk": 2,
     "fields": {
-        "product_name": "Huawei",
-        "description": "\"Huawei P20\"",
-        "preview_image": "",
-        "category": 1,
-        "price": 35438,
-        "created_at": "2024-06-09",
-        "updated_at": "2024-06-09T09:14:00.249Z"
+      "product": 11,
+      "version_number": "57",
+      "version_name": "Июнь 2023",
+      "is_active": true
     }
-},
-{
-    "model": "catalog.product",
+  },
+  {
+    "model": "catalog.version",
     "pk": 3,
     "fields": {
-        "product_name": "Vivo",
-        "description": "\"vivo Y93 (Mediatek)\"",
-        "preview_image": "",
-        "category": 1,
-        "price": 4687,
-        "created_at": "2024-06-09",
-        "updated_at": "2024-06-09T09:14:29.955Z"
+      "product": 11,
+      "version_number": "56",
+      "version_name": "Январь 2023",
+      "is_active": false
     }
-},
-{
-    "model": "catalog.product",
+  },
+  {
+    "model": "catalog.version",
     "pk": 4,
     "fields": {
-        "product_name": "Tecno",
-        "description": "Tecno Spark Power 2",
-        "preview_image": "",
-        "category": 1,
-        "price": 48971,
-        "created_at": "2024-06-09",
-        "updated_at": "2024-06-09T09:14:57.934Z"
+      "product": 11,
+      "version_number": "55",
+      "version_name": "Октябрь 2022",
+      "is_active": false
     }
-}
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "product": 5,
+      "version_number": "2024.1.2",
+      "version_name": "Июнь 2024",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 4,
+      "version_number": "2024.1.4",
+      "version_name": "Июнь 2024",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 7,
+    "fields": {
+      "product": 4,
+      "version_number": "2023.3",
+      "version_name": "Декабрь 2023",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 8,
+    "fields": {
+      "product": 4,
+      "version_number": "2023.2",
+      "version_name": "Июнь 2023",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 9,
+    "fields": {
+      "product": 9,
+      "version_number": "just work",
+      "version_name": "don't think",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 10,
+    "fields": {
+      "product": 3,
+      "version_number": "1.37",
+      "version_name": "Июль 2024",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 11,
+    "fields": {
+      "product": 3,
+      "version_number": "1.36",
+      "version_name": "Июнь 2024",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 12,
+    "fields": {
+      "product": 3,
+      "version_number": "1.35",
+      "version_name": "Май 2024",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 13,
+    "fields": {
+      "product": 7,
+      "version_number": "28.5",
+      "version_name": "Май 2024",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 14,
+    "fields": {
+      "product": 7,
+      "version_number": "28.4",
+      "version_name": "Март 2024",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 15,
+    "fields": {
+      "product": 7,
+      "version_number": "28.3",
+      "version_name": "Февраль 2024",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 16,
+    "fields": {
+      "product": 10,
+      "version_number": "Freehand",
+      "version_name": "Июль 2023",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 17,
+    "fields": {
+      "product": 10,
+      "version_number": "V7",
+      "version_name": "Июнь 2023",
+      "is_active": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 18,
+    "fields": {
+      "product": 10,
+      "version_number": "V6",
+      "version_name": "Июнь 2023-m",
+      "is_active": false
+    }
+  }
 ]

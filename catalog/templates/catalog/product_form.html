@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                    <h1>Добавить продукт</h1>
-                    <form method="post" enctype="multipart/form-data">
+    <div class="col-12">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        {% if object %}
+                        <h3>Изменить описание продукта</h3>
+                        {% else %}
+                        <h3>Добавить продукт</h3>
+                        {% endif %}
+
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit">Добавить</button>
-                    </form>
+                        {% if object %}
+                        <button type="submit" class="btn btn-success">Сохранить
+                        </button>
+                        {% else %}
+                        <button type="submit" class="btn btn-success">Добавить
+                        </button>
+                        {% endif %}
+                        <a class="btn btn-primary "
+                           href="{% url 'catalog:product_list' %}">Отмена</a>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-6">
+                <div class="card-header"> Управление версиями продукта</div>
+                {{ formset.management_form }}
+                {% for form in formset.forms %}
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        {{ form.as_p }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

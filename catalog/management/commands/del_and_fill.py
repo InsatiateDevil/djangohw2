@@ -1,9 +1,12 @@
 import json
+import os
+
 from django.core.management import BaseCommand
 
 from catalog.models import Product, Category
+from config.settings import BASE_DIR
 
-file_path = 'db.json'
+file_path = os.path.join(BASE_DIR, 'db.json')
 
 
 class Command(BaseCommand):
