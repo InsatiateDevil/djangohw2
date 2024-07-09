@@ -16,3 +16,9 @@ class UserUpdateForm(StyleFormMixin, ModelForm):
         model = User
         fields = ['first_name', 'last_name',
                   'phone_number', 'avatar', 'country']
+
+
+class PasswordRecoveryForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']

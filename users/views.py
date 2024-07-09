@@ -1,13 +1,14 @@
 import secrets
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, FormView
 
 from config.settings import EMAIL_HOST_USER
-from users.forms import UserRegisterForm, UserUpdateForm
+from users.forms import UserRegisterForm, UserUpdateForm, PasswordRecoveryForm
 from users.models import User
 
 
@@ -18,18 +19,16 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(commit=False)
         user.is_active = False
         token = secrets.token_hex(16)
         user.token = token
         user.save()
         host = self.request.get_host()
         url = f'http://{host}/users/email-confirm/{token}/'
-        send_mail(
+        user.email_user(
             subject='Confirm your email',
             message=f'Please click on the link to confirm your email: {url}',
-            from_email=EMAIL_HOST_USER,
-            recipient_list=[user.email],
         )
         return super().form_valid(form)
 
@@ -56,19 +55,25 @@ def email_confirm_view(request, token):
     return redirect(reverse('users:login'))
 
 
-def password_recovery_view(request):
-    if request.method == 'GET':
-        return render(request, 'users/password_recovery.html')
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        user = get_object_or_404(User, email=email)
-        password = secrets.token_urlsafe(12)
-        user.set_password(password)
-        user.save()
-        send_mail(
-            subject='Your new password',
-            message=f'Your new password is: {password}',
-            from_email=EMAIL_HOST_USER,
-            recipient_list=[user.email],
-        )
-        return redirect(reverse('users:login'))
+class PasswordRecoveryView(FormView):
+    model = User
+    form_class = PasswordRecoveryForm
+    template_name = 'users/password_recovery.html'
+    success_url = reverse_lazy('users:login')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            try:
+                user = User.objects.get(email=email)
+            except ObjectDoesNotExist:
+                form.add_error('email', 'Пользователь не найден')
+                return self.form_invalid(form)
+            password = User.objects.make_random_password(length=12)
+            user.set_password(password)
+            user.save()
+            user.email_user(
+                subject='Your new password',
+                message=f'Your new password is: {password}'
+            )
+            return super().form_valid(form)
