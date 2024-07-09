@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import ModelForm
-
+from django.forms import Form, EmailField, EmailInput, ModelForm
 from catalog.forms import StyleFormMixin
 from users.models import User
 
@@ -18,7 +17,13 @@ class UserUpdateForm(StyleFormMixin, ModelForm):
                   'phone_number', 'avatar', 'country']
 
 
-class PasswordRecoveryForm(StyleFormMixin, ModelForm):
-    class Meta:
-        model = User
-        fields = ['email']
+class PasswordRecoveryForm(Form):
+    email = EmailField(
+        required=True,
+        widget=EmailInput(
+            attrs={
+                'placeholder': 'Введите адрес электронной почты',
+                'class': 'form-control text-center',
+            }
+        ),
+    )

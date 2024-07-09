@@ -1,6 +1,7 @@
 import secrets
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordResetView
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
@@ -72,8 +73,10 @@ class PasswordRecoveryView(FormView):
             password = User.objects.make_random_password(length=12)
             user.set_password(password)
             user.save()
-            user.email_user(
+            send_mail(
                 subject='Your new password',
-                message=f'Your new password is: {password}'
+                message=f'Your new password is: {password}',
+                from_email=EMAIL_HOST_USER,
+                recipient_list=[user.email],
             )
             return super().form_valid(form)
