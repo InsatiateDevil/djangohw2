@@ -1,10 +1,12 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
 from django.views.generic import DetailView, UpdateView, TemplateView, \
     CreateView, ListView, DeleteView
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, BlogForm
 from catalog.models import Product, Contact, Blog, Version
+from catalog.services import send_email
 
 
 class ContactsListView(ListView):
@@ -12,31 +14,38 @@ class ContactsListView(ListView):
     template_name = 'contacts.html'
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         for obj in context['object_list']:
-            obj.active_version = Product.objects.filter(
-                pk=obj.pk).first().versions.filter(is_active=True).first()
+            obj.active_version = obj.versions.filter(
+                is_active=True).first() if obj.versions.filter(
+                is_active=True).first() else "Активная версия не найдена"
         return context
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
 
     def get_success_url(self):
         return reverse('catalog:product_detail', kwargs={'pk': self.object.pk})
 
+    def form_valid(self, form):
+        product = form.save()
+        product.owner = self.request.user
+        product.save()
+        return super().form_valid(form)
 
-class ProductDetailView(DetailView):
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
 
@@ -58,7 +67,8 @@ class ProductUpdateView(UpdateView):
         context = self.get_context_data()
         formset = context['formset']
         if form.is_valid() and formset.is_valid():
-            formset.instance = form.save()
+            self.object = form.save()
+            formset.instance = self.object
             formset.save()
             return super().form_valid(form)
         else:
@@ -66,26 +76,26 @@ class ProductUpdateView(UpdateView):
                 self.get_context_data(form=form, formset=formset))
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_list')
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Blog
-    fields = ('title', 'content', 'preview_image', 'is_published',)
+    form_class = BlogForm
     success_url = reverse_lazy('catalog:blog_list')
 
     def form_valid(self, form):
         if form.is_valid():
             blog = form.save()
+            blog.author = self.request.user
             blog.slug = slugify(blog.title)
             blog.save()
-
         return super().form_valid(form)
 
 
-class BlogListView(ListView):
+class BlogListView(LoginRequiredMixin, ListView):
     model = Blog
 
     def get_queryset(self, *args, **kwargs):
@@ -94,13 +104,21 @@ class BlogListView(ListView):
         return queryset
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     model = Blog
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.view_counter += 1
+        if self.object.view_counter == 100:
+            send_email(self.object)
+        self.object.save()
+        return self.object
 
-class BlogUpdateView(UpdateView):
+
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
-    fields = ('title', 'content', 'preview_image', 'is_published',)
+    form_class = BlogForm
 
     def get_success_url(self):
         return reverse('catalog:blog_detail', kwargs={'pk': self.object.pk})
@@ -114,6 +132,6 @@ class BlogUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('catalog:blog_list')

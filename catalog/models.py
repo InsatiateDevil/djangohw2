@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100, verbose_name='Категория',
@@ -40,6 +42,9 @@ class Product(models.Model):
     updated_at = models.DateTimeField(
         verbose_name='Дата последнего изменения карточки', auto_now=True,
         editable=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              verbose_name='Автор', blank=True, null=True,
+                              related_name='products')
 
     class Meta:
         verbose_name = 'Товар'
@@ -79,6 +84,10 @@ class Blog(models.Model):
                                        help_text='Опубликовано')
     view_counter = models.PositiveIntegerField(default=0, editable=False,
                                                verbose_name='Количество просмотров')
+    author = models.ForeignKey(
+        User, verbose_name='Автор', blank=True, null=True,
+        on_delete=models.CASCADE, help_text='Укажите автора статьи',
+        related_name='blogs')
 
     def __str__(self):
         return f'{self.title}'

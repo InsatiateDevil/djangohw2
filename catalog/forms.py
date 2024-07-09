@@ -1,6 +1,6 @@
 from django.forms import ModelForm, forms, BooleanField
 
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Blog
 
 
 class StyleFormMixin:
@@ -16,7 +16,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('owner',)
 
     def clean_product_name(self):
         product_name = self.cleaned_data['product_name']
@@ -44,3 +44,8 @@ class VersionForm(StyleFormMixin, ModelForm):
         model = Version
         fields = '__all__'
 
+
+class BlogForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('title', 'content', 'preview_image', 'is_published',)

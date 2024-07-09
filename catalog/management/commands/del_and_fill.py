@@ -6,6 +6,7 @@ from django.core.management import BaseCommand
 
 from catalog.models import Product, Category, Version
 from config.settings import BASE_DIR
+from users.models import User
 
 file_path = os.path.join(BASE_DIR, 'db.json')
 
@@ -23,11 +24,14 @@ class Command(BaseCommand):
 
         Category.objects.all().delete()
         Product.objects.all().delete()
+        Version.objects.all().delete()
+        User.objects.all().delete()
 
         # Создайте списки для хранения объектов
         product_for_create = []
         category_for_create = []
         version_for_create = []
+        user_for_create = []
         dict_list = Command.json_read(file_path)
 
         # Обходим все значения категорий из фиктсуры для получения информации
@@ -51,7 +55,8 @@ class Command(BaseCommand):
                             product_name=product['fields']['product_name'],
                             description=product['fields']['description'],
                             preview_image=product['fields']['preview_image'],
-                            category=Category.objects.get(pk=product['fields']['category']),
+                            category=Category.objects.get(
+                                pk=product['fields']['category']),
                             price=product['fields']['price'],
                             created_at=product['fields']['created_at'],
                             updated_at=product['fields']['updated_at'])
@@ -70,3 +75,17 @@ class Command(BaseCommand):
                 )
 
         Version.objects.bulk_create(version_for_create)
+
+        for user in dict_list:
+            if user['model'] == 'users.user':
+                user_for_create.append(
+                    User(pk=user['pk'],
+                         password=user['fields']['password'],
+                         is_superuser=user['fields'][
+                             'is_superuser'],
+                         email=user['fields']['email'],
+                         is_active=user['fields']['is_active'],
+                         is_staff=user['fields']['is_staff'],
+                         ))
+
+        User.objects.bulk_create(user_for_create)

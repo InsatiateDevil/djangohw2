@@ -1,5 +1,26 @@
 [
   {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$5xFXEz4u2i4OEwUVuPq0lb$eooL6sUElPv2FZKFfbUNpKblI1eTs0VRXabX3GO3Poo=",
+      "last_login": "2024-07-09T12:12:58.053Z",
+      "is_superuser": true,
+      "first_name": "Admin",
+      "last_name": "Adminov",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-08T14:43:39.593Z",
+      "email": "ilidanum@gmail.com",
+      "phone_number": null,
+      "avatar": "",
+      "token": null,
+      "country": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
     "model": "catalog.category",
     "pk": 1,
     "fields": {
@@ -24,8 +45,9 @@
       "preview_image": "",
       "category": 1,
       "price": 1500,
-      "created_at": "2024-07-04T14:34:10.840Z",
-      "updated_at": "2024-07-04T14:35:57.580Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:14:03.117Z",
+      "owner": 7
     }
   },
   {
@@ -37,8 +59,9 @@
       "preview_image": "",
       "category": 1,
       "price": 2000,
-      "created_at": "2024-07-04T14:35:44.263Z",
-      "updated_at": "2024-07-04T14:35:44.263Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:56.210Z",
+      "owner": 7
     }
   },
   {
@@ -50,8 +73,9 @@
       "preview_image": "",
       "category": 1,
       "price": 3000,
-      "created_at": "2024-07-04T14:36:30.529Z",
-      "updated_at": "2024-07-04T14:36:30.529Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:40.917Z",
+      "owner": 7
     }
   },
   {
@@ -63,8 +87,9 @@
       "preview_image": "",
       "category": 1,
       "price": 1000,
-      "created_at": "2024-07-04T14:37:14.704Z",
-      "updated_at": "2024-07-04T14:37:14.704Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:28.145Z",
+      "owner": 7
     }
   },
   {
@@ -76,8 +101,9 @@
       "preview_image": "",
       "category": 1,
       "price": 2000,
-      "created_at": "2024-07-04T14:37:50.036Z",
-      "updated_at": "2024-07-04T14:37:50.036Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:21.202Z",
+      "owner": 7
     }
   },
   {
@@ -89,8 +115,9 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-04T14:38:36.640Z",
-      "updated_at": "2024-07-04T14:38:36.640Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:52.758Z",
+      "owner": 7
     }
   },
   {
@@ -102,8 +129,9 @@
       "preview_image": "",
       "category": 2,
       "price": 3000,
-      "created_at": "2024-07-04T14:39:14.903Z",
-      "updated_at": "2024-07-04T14:39:14.903Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:45.241Z",
+      "owner": 7
     }
   },
   {
@@ -115,8 +143,9 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-04T14:39:34.640Z",
-      "updated_at": "2024-07-04T14:39:34.640Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:59.614Z",
+      "owner": 7
     }
   },
   {
@@ -128,8 +157,9 @@
       "preview_image": "",
       "category": 2,
       "price": 1500,
-      "created_at": "2024-07-04T14:40:24.775Z",
-      "updated_at": "2024-07-04T14:40:24.775Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:36.578Z",
+      "owner": 7
     }
   },
   {
@@ -141,8 +171,9 @@
       "preview_image": "",
       "category": 2,
       "price": 10000,
-      "created_at": "2024-07-04T14:42:16.703Z",
-      "updated_at": "2024-07-04T14:42:16.703Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:49.088Z",
+      "owner": 7
     }
   },
   {
@@ -154,8 +185,9 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-04T14:42:45.063Z",
-      "updated_at": "2024-07-04T16:33:37.077Z"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:13:16.906Z",
+      "owner": 7
     }
   },
   {
@@ -167,17 +199,9 @@
       "preview_image": "",
       "category": 2,
       "price": 4000,
-      "created_at": "2024-07-04T14:43:14.051Z",
-      "updated_at": "2024-07-04T14:43:14.051Z"
-    }
-  },
-  {
-    "model": "catalog.contact",
-    "pk": 1,
-    "fields": {
-      "country": "USA",
-      "inn": "91-1144442",
-      "address": "Redmond,WA,98052-6399"
+      "created_at": "2024-07-08T13:02:54.401Z",
+      "updated_at": "2024-07-09T12:14:06.768Z",
+      "owner": 7
     }
   },
   {
