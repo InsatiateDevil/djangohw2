@@ -67,6 +67,14 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         context = self.get_context_data()
         formset = context['formset']
         if form.is_valid() and formset.is_valid():
+            active_version = 0
+            for i in formset.forms:
+                if i.cleaned_data.get('is_active'):
+                    active_version += 1
+                if active_version > 1:
+                    form.add_error(None,
+                                'Вы можете выбрать только одну активную версию')
+                    return self.form_invalid(form)
             self.object = form.save()
             formset.instance = self.object
             formset.save()
