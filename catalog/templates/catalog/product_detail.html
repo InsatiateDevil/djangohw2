@@ -11,12 +11,12 @@
         <button type="button" class="btn btn-lg btn-block btn-outline-primary">
             {{product.price}} руб.
         </button>
-        <a class="btn btn-lg btn-block btn-warning" href="{% url 'catalog:product_update' object.pk %}">
-            Изменить
-        </a>
-        <a class="btn btn-lg btn-block btn-danger" href="{% url 'catalog:product_delete' object.pk %}">
-            Удалить
-        </a>
+        {% if perms.catalog.product_set_published_status and perms.catalog.product_change_description and perms.catalog.product_change_category or user == product.owner or user.is_superuser %}
+        <a class="btn btn-lg btn-block btn-warning" href="{% url 'catalog:product_update' object.pk %}">Изменить</a>
+        {% endif %}
+        {% if user == product.owner or user.is_superuser %}
+        <a class="btn btn-lg btn-block btn-danger" href="{% url 'catalog:product_delete' object.pk %}">Удалить</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

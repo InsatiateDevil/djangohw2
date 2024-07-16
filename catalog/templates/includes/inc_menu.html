@@ -10,5 +10,8 @@
         {% else %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:login'  %}">Войти</a>
         {% endif %}
+        {% if user.is_superuser %}
+        <a class="p-2 btn btn-outline-primary" href="http://127.0.0.1:8000/admin/">Админка</a>
+        {% endif %}
     </nav>
 </div>

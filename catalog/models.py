@@ -45,11 +45,18 @@ class Product(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE,
                               verbose_name='Автор', blank=True, null=True,
                               related_name='products')
+    is_published = models.BooleanField(default=False,
+                                       verbose_name='Доступно публике')
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['product_name', 'price', 'category']
+        permissions = [
+            ('product_set_published_status', 'Публиковать товар'),
+            ('product_change_description', 'Изменять описание товара'),
+            ('product_change_category', 'Изменять категорию товара'),
+                       ]
 
     def __str__(self):
         return f"{self.product_name} - {self.price}"
@@ -79,7 +86,7 @@ class Blog(models.Model):
                                       verbose_name='изображение для предпросмотра')
     created_at = models.DateTimeField(verbose_name='Дата создания статьи',
                                       auto_now_add=True, editable=False)
-    is_published = models.BooleanField(default=True,
+    is_published = models.BooleanField(default=False,
                                        verbose_name='опубликовано',
                                        help_text='Опубликовано')
     view_counter = models.PositiveIntegerField(default=0, editable=False,
@@ -95,6 +102,9 @@ class Blog(models.Model):
     class Meta:
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
+        permissions = [
+            ('blog_set_published_status', 'Публиковать статью')
+        ]
 
 
 class Version(models.Model):

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="card mb-4 box-shadow">
+    {% if blog %}
     <div class="card-header">
         <h4 class="my-0 font-weight-normal">{{blog.title}}</h4>
     </div>
@@ -8,7 +9,16 @@
         <ul class="list-unstyled mt-3 mb-4 text-start m-3">
             <li>{{blog.content}}</li>
         </ul>
+        {% if perms.catalog.product.set_published_status and perms.catalog.product.change_description and perms.catalog.product.change_category or user == product.owner or user.is_superuser %}
+        <a class="btn btn-lg btn-block btn-warning" href="{% url 'catalog:product_update' object.pk %}">Изменить</a>
+        {% endif %}
+        {% if user == product.owner or user.is_superuser %}
+        <a class="btn btn-lg btn-block btn-danger" href="{% url 'catalog:product_delete' object.pk %}">Удалить</a>
+        {% endif %}
         <div class="card-footer">Просмотров статьи: {{blog.view_counter}}</div>
     </div>
+    {% else %}
+    <h4 class="card-body">Данная статья не найдена</h4>
+    {% endif %}
 </div>
 {% endblock %}

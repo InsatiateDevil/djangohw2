@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load to_100_symbols %}
 {% load media_tag %}
 {% block content %}
 <div class="container">
@@ -29,14 +30,15 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>{{product.content | truncatechars:100}}</li>
+                        <li>{{blog.content | to_100_symbols }}</li>
                     </ul>
-                    <a class="btn btn-mb btn-outline-primary"
-                       href="{% url 'catalog:blog_detail' blog.pk %}">Подробности</a>
-                    <a class="btn btn-mb btn-outline-primary"
-                       href="{% url 'catalog:blog_update' blog.pk %}">Редактировать</a>
-                    <a class="btn btn-mb btn-outline-primary"
-                       href="{% url 'catalog:blog_delete' blog.pk %}">Удалить статью</a>
+                    <a class="btn btn-mb btn-outline-primary" href="{% url 'catalog:blog_detail' blog.pk %}">Читать далее</a>
+                    {% if user.is_superuser or perms.catalog.blog_set_published_status or user == blog.author %}
+                    <a class="btn btn-mb btn-outline-primary" href="{% url 'catalog:blog_update' blog.pk %}">Редактировать</a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a class="btn btn-mb btn-outline-primary" href="{% url 'catalog:blog_delete' blog.pk %}">Удалить статью</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
