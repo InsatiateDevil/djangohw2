@@ -39,6 +39,12 @@ class ProductForm(StyleFormMixin, ModelForm):
         return description
 
 
+class ProductModerationForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ('is_published', 'description', 'category',)
+
+
 class VersionForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Version
@@ -48,4 +54,10 @@ class VersionForm(StyleFormMixin, ModelForm):
 class BlogForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Blog
-        fields = ('title', 'content', 'preview_image', 'is_published',)
+        fields = ('title', 'content', 'preview_image',)
+
+
+class BlogModerationForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('is_published',)

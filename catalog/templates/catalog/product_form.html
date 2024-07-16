@@ -11,7 +11,6 @@
                         {% else %}
                         <h3>Добавить продукт</h3>
                         {% endif %}
-
                         {% csrf_token %}
                         {{ form.as_p }}
                         {% if object %}
@@ -26,16 +25,18 @@
                     </div>
                 </div>
             </div>
+            {% if formset %}
             <div class="col-6">
                 <div class="card-header"> Управление версиями продукта</div>
                 {{ formset.management_form }}
-                {% for form in formset.forms %}
+                {% for form in formset %}
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         {{ form.as_p }}
                     </div>
                 </div>
                 {% endfor %}
+            {% endif %}
             </div>
         </form>
     </div>

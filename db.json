@@ -1,26 +1,5 @@
 [
   {
-    "model": "users.user",
-    "pk": 7,
-    "fields": {
-      "password": "pbkdf2_sha256$600000$5xFXEz4u2i4OEwUVuPq0lb$eooL6sUElPv2FZKFfbUNpKblI1eTs0VRXabX3GO3Poo=",
-      "last_login": "2024-07-09T12:12:58.053Z",
-      "is_superuser": true,
-      "first_name": "Admin",
-      "last_name": "Adminov",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2024-07-08T14:43:39.593Z",
-      "email": "ilidanum@gmail.com",
-      "phone_number": null,
-      "avatar": "",
-      "token": null,
-      "country": null,
-      "groups": [],
-      "user_permissions": []
-    }
-  },
-  {
     "model": "catalog.category",
     "pk": 1,
     "fields": {
@@ -45,9 +24,10 @@
       "preview_image": "",
       "category": 1,
       "price": 1500,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:14:03.117Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -59,9 +39,10 @@
       "preview_image": "",
       "category": 1,
       "price": 2000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:56.210Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -73,9 +54,10 @@
       "preview_image": "",
       "category": 1,
       "price": 3000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:40.917Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -87,9 +69,10 @@
       "preview_image": "",
       "category": 1,
       "price": 1000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:28.145Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T19:51:07.185Z",
+      "owner": null,
+      "is_published": true
     }
   },
   {
@@ -101,9 +84,10 @@
       "preview_image": "",
       "category": 1,
       "price": 2000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:21.202Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T19:50:58.854Z",
+      "owner": null,
+      "is_published": true
     }
   },
   {
@@ -115,9 +99,10 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:52.758Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -129,9 +114,10 @@
       "preview_image": "",
       "category": 2,
       "price": 3000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:45.241Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -143,9 +129,10 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:59.614Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T18:29:58.803Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -157,9 +144,10 @@
       "preview_image": "",
       "category": 2,
       "price": 1500,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:36.578Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.803Z",
+      "updated_at": "2024-07-16T19:51:15.750Z",
+      "owner": null,
+      "is_published": true
     }
   },
   {
@@ -171,9 +159,10 @@
       "preview_image": "",
       "category": 2,
       "price": 10000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:49.088Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.804Z",
+      "updated_at": "2024-07-16T18:29:58.804Z",
+      "owner": null,
+      "is_published": false
     }
   },
   {
@@ -185,9 +174,10 @@
       "preview_image": "",
       "category": 2,
       "price": 5000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:13:16.906Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.804Z",
+      "updated_at": "2024-07-16T19:50:52.439Z",
+      "owner": null,
+      "is_published": true
     }
   },
   {
@@ -199,9 +189,52 @@
       "preview_image": "",
       "category": 2,
       "price": 4000,
-      "created_at": "2024-07-08T13:02:54.401Z",
-      "updated_at": "2024-07-09T12:14:06.768Z",
-      "owner": 7
+      "created_at": "2024-07-16T18:29:58.804Z",
+      "updated_at": "2024-07-16T18:29:58.804Z",
+      "owner": null,
+      "is_published": false
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Что такое Lorem Ipsum?",
+      "slug": "lorem-ipsum",
+      "content": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.",
+      "preview_image": "",
+      "created_at": "2024-07-16T18:52:55.474Z",
+      "is_published": true,
+      "view_counter": 0,
+      "author": 1
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 2,
+    "fields": {
+      "title": "Почему Lorem Ipsum используется?",
+      "slug": "lorem-ipsum",
+      "content": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).",
+      "preview_image": "",
+      "created_at": "2024-07-16T18:53:44.835Z",
+      "is_published": false,
+      "view_counter": 1,
+      "author": 1
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "Откуда появился Lorem Ipsum?",
+      "slug": "lorem-ipsum",
+      "content": "Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32\r\n\r\nКлассический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год.",
+      "preview_image": "",
+      "created_at": "2024-07-16T18:54:16.901Z",
+      "is_published": true,
+      "view_counter": 2,
+      "author": 1
     }
   },
   {
@@ -372,6 +405,133 @@
       "version_number": "V6",
       "version_name": "Июнь 2023-m",
       "is_active": false
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$C9LAFTtv2SM0xADVwEaCiU$WAwtdTwpd5F7YxL5XBtZuyfgAb0u+E3+5JJXusmUqIA=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "Admin",
+      "last_name": "Adminov",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-16T19:58:49.148Z",
+      "email": "admin@gmail.com",
+      "phone_number": null,
+      "avatar": "",
+      "token": null,
+      "country": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$vMnONaSPLiyxfwIDM5lqSm$Erodd8wH6EJ89+UZJ+chfyQZ3uFbE+kgQuibQYzn6Mo=",
+      "last_login": "2024-07-16T18:40:21.526Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-07-16T18:31:10Z",
+      "email": "productmoderator@gmail.com",
+      "phone_number": null,
+      "avatar": "",
+      "token": null,
+      "country": null,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$RoR8UUy1xAK0vw84iGiPjp$clShISLKc6SDqA45adE+VEx0cF/Rr+WQxv+N1SAa9Uo=",
+      "last_login": "2024-07-16T19:06:13.957Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-07-16T18:32:03Z",
+      "email": "blogmoderator@gmail.com",
+      "phone_number": null,
+      "avatar": "",
+      "token": null,
+      "country": null,
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Публиковать товар",
+      "content_type": 7,
+      "codename": "product_set_published_status"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Изменять описание товара",
+      "content_type": 7,
+      "codename": "product_change_description"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Изменять категорию товара",
+      "content_type": 7,
+      "codename": "product_change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Публиковать статью",
+      "content_type": 9,
+      "codename": "blog_set_published_status"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Модераторы товаров",
+      "permissions": [
+        50,
+        49,
+        48,
+        28
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "Контент-менеджеры блога",
+      "permissions": [
+        51,
+        36
+      ]
     }
   }
 ]

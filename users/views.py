@@ -1,7 +1,7 @@
 import secrets
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import LoginView
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,8 +9,17 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, FormView
 
 from config.settings import EMAIL_HOST_USER
-from users.forms import UserRegisterForm, UserUpdateForm, PasswordRecoveryForm
+from users.forms import UserRegisterForm, UserUpdateForm, PasswordRecoveryForm, \
+    LoginForm
 from users.models import User
+
+
+class CustomLoginView(LoginView):
+    authentication_form = LoginForm
+    template_name = 'users/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('blog:index')
 
 
 class UserCreateView(CreateView):
@@ -27,9 +36,11 @@ class UserCreateView(CreateView):
         user.save()
         host = self.request.get_host()
         url = f'http://{host}/users/email-confirm/{token}/'
-        user.email_user(
+        send_mail(
             subject='Confirm your email',
             message=f'Please click on the link to confirm your email: {url}',
+            from_email=EMAIL_HOST_USER,
+            recipient_list=[user.email],
         )
         return super().form_valid(form)
 

@@ -1,9 +1,9 @@
 import json
 import os
-import time
 
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 from django.core.management import BaseCommand
-
 from catalog.models import Product, Category, Version
 from config.settings import BASE_DIR
 from users.models import User
@@ -32,6 +32,8 @@ class Command(BaseCommand):
         category_for_create = []
         version_for_create = []
         user_for_create = []
+        permissions_for_create = []
+        group_for_create = []
         dict_list = Command.json_read(file_path)
 
         # Обходим все значения категорий из фиктсуры для получения информации
@@ -89,3 +91,25 @@ class Command(BaseCommand):
                          ))
 
         User.objects.bulk_create(user_for_create)
+
+        for permission in dict_list:
+            if permission['model'] == 'auth.permission':
+                permissions_for_create.append(
+                    Permission(pk=permission['pk'],
+                               name=permission['fields']['name'],
+                               content_type=ContentType.objects.get(
+                                   pk=permission['fields']['content_type']),
+                               codename=permission['fields']['codename'])
+                )
+
+        Permission.objects.bulk_create(permissions_for_create)
+
+        for group in dict_list:
+            if group['model'] == 'auth.group':
+                group_for_create.append(
+                    Group(pk=group['pk'],
+                          name=group['fields']['name'],
+                          permissions=group['fields']['permissions'])
+                )
+
+        Group.objects.bulk_create(group_for_create)
