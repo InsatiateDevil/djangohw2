@@ -7,8 +7,9 @@ from django.views.generic import DetailView, UpdateView, CreateView, ListView, \
     DeleteView
 from catalog.forms import ProductForm, VersionForm, BlogForm, \
     ProductModerationForm, BlogModerationForm
-from catalog.models import Product, Contact, Blog, Version
-from catalog.services import send_email
+from catalog.models import Product, Contact, Blog, Version, Category
+from catalog.services import send_email, cache_product_list_by_category, \
+    cache_category_list
 
 
 class ContactsListView(ListView):
@@ -21,12 +22,14 @@ class ProductListView(LoginRequiredMixin, ListView):
     paginate_by = 4
 
     def get_queryset(self, *args, **kwargs):
+        category_id = self.kwargs['pk']
         if self.request.user.is_superuser or self.request.user.has_perm('catalog.view_product'):
-            return super().get_queryset()
-        return super().get_queryset().filter(is_published=True)
+            return cache_product_list_by_category(category_id)
+        return cache_product_list_by_category(category_id).filter(is_published=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['category_pk'] = self.kwargs['pk']
         for obj in context['object_list']:
             obj.active_version = obj.versions.filter(
                 is_active=True).first() if obj.versions.filter(
@@ -61,6 +64,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['category_pk'] = Product.objects.get(pk=self.kwargs['pk']).category.pk
         if type(context['form']) == ProductForm:
             ProductFormset = inlineformset_factory(Product, Version, VersionForm,
                                                    extra=1)
@@ -109,6 +113,11 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_pk'] = Product.objects.get(pk=self.kwargs['pk']).category.pk
+        return context
 
 
 class BlogCreateView(LoginRequiredMixin, CreateView):
@@ -179,3 +188,10 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
 class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('catalog:blog_list')
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+
+    def get_queryset(self, *args, **kwargs):
+        return cache_category_list()

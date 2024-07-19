@@ -30,7 +30,7 @@ class Product(models.Model):
                                       help_text='Загрузите изображения',
                                       blank=True, null=True)
     category = models.ForeignKey(Category,
-                                 related_name='category',
+                                 related_name='products',
                                  on_delete=models.SET_NULL,
                                  verbose_name='Категория',
                                  help_text='Введите категорию товара',
